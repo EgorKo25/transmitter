@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import random as rd
 import numpy as np
 
-
+# Поиск старшего бита
 def head_bit(value):
 
     bit_num = 31
@@ -15,6 +15,7 @@ def head_bit(value):
     return bit_num
 
 
+"""
 def polynomial_division_mod(dividend, divider):
 
     m = head_bit(divider)
@@ -30,7 +31,8 @@ def polynomial_division_mod(dividend, divider):
         
         k = head_bit(dividend) - m
     return dividend
-
+"""
+# Деление полиномов
 def polynomial_division(dividend, divider):
     m = head_bit(divider)
     k = head_bit(dividend) - m
@@ -45,7 +47,7 @@ def polynomial_division(dividend, divider):
         k = head_bit(dividend) - m
 
 
-
+# Генерация случайного вектора ошибок
 def error_vector_creater(length, p):
     error = 0
 
@@ -61,7 +63,7 @@ def error_vector_creater(length, p):
 
     return error
 
-
+# Построение графика
 def graph_creater(x, y):
 
     plt.figure(label="Иллюстрация изменения вероятности")
@@ -99,8 +101,6 @@ def main():
 
             mxxr = encoded_msg *  (2 ** g_pow)
             c = polynomial_division(mxxr, g)
-            #print(f"c = {bin(c)}")
-            
 
             sended_msg = mxxr + c
             
@@ -110,8 +110,6 @@ def main():
             goted_msg = sended_msg ^ error_vector
 
             syndrom = polynomial_division(goted_msg, g)ага
-
-            #print(f"m = {encoded_msg}\nmxxr = {bin(mxxr)}\nc = {bin(c)}\ng_pow = {g_pow}\ng_len = {g_len}\nk = {k}\ne = {bin(error_vector)}\na = {bin(sended_msg)}\nb = {bin(goted_msg)}\ns = {bin(syndrom)}\n-------------------\n")
 
             if syndrom == 0 and error_vector > 0:
                 pe += 1
